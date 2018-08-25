@@ -1,3 +1,3 @@
-# Recent Order Service
+# Concurrency Concepts
 
-A simple multithreaded Spring Boot application for keeping track of recent orders.
+A repository for practicing and learning concurrency.
