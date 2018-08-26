@@ -41,9 +41,9 @@ data class OrderTimestamp(
         )
     }
 
-    fun plusMillis(millis: Long): OrderTimestamp {
+    fun plusMillis(millis: Int): OrderTimestamp {
         return OrderTimestamp(
-            timestamp = this.timestamp.plusNanos(millis * NANOSECONDS_IN_A_MILLISECOND)
+            timestamp = this.timestamp.plusNanos(millis.toLong() * NANOSECONDS_IN_A_MILLISECOND)
         )
     }
 
