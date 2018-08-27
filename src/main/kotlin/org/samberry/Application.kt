@@ -1,4 +1,4 @@
-package org.samberry.recentorder
+package org.samberry
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
