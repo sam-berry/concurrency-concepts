@@ -45,7 +45,7 @@ class TwoThousandOrdersResourceTest {
      * This test verifies that 2000 orders can be posted and processed before they start to expire.
      */
     @Test
-    fun `can process 2000 orders fast enough to provide statistics immediately after`() {
+    fun `can process 2000 sequential orders fast enough to provide statistics immediately after`() {
         val total = (1..2000).map { amounts[it % amounts.size] }
             .map {
                 testRestTemplate.postForEntity(
