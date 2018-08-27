@@ -3,8 +3,8 @@ package org.samberry.intermediatevalue
 import org.springframework.stereotype.Service
 import java.util.concurrent.atomic.AtomicInteger
 
-const val FIRST_REQUEST_VALUE = "first value"
-const val SECOND_REQUEST_VALUE = "second value"
+const val FIRST_VALUE = "first value"
+const val SECOND_VALUE = "second value"
 
 @Service
 class IntermediateValueService {
@@ -14,31 +14,31 @@ class IntermediateValueService {
 
     fun `fetch value using method state`(): String {
         val count = requestCount.get()
-        val value: String
+        var value: String? = null
         if (count == 0) {
             requestCount.incrementAndGet()
-            value = FIRST_REQUEST_VALUE
+            value = FIRST_VALUE
             Thread.sleep(5000)
-        } else {
+        } else if (count == 1) {
             requestCount.incrementAndGet()
-            value = SECOND_REQUEST_VALUE
+            value = SECOND_VALUE
         }
 
-        return value
+        return value ?: ""
     }
 
     fun `fetch value using class state`(): String {
         val count = requestCount.get()
         if (count == 0) {
             requestCount.incrementAndGet()
-            classLevelValue = FIRST_REQUEST_VALUE
+            classLevelValue = FIRST_VALUE
             Thread.sleep(5000)
-        } else {
+        } else if (count == 1) {
             requestCount.incrementAndGet()
-            classLevelValue = SECOND_REQUEST_VALUE
+            classLevelValue = SECOND_VALUE
         }
 
-        return classLevelValue!!
+        return classLevelValue ?: ""
     }
 
     @Synchronized
@@ -55,14 +55,14 @@ class IntermediateValueService {
         val count = requestCount.get()
         if (count == 0) {
             requestCount.incrementAndGet()
-            setValue(FIRST_REQUEST_VALUE)
+            setValue(FIRST_VALUE)
             Thread.sleep(5000)
-        } else {
+        } else if (count == 1) {
             requestCount.incrementAndGet()
-            setValue(SECOND_REQUEST_VALUE)
+            setValue(SECOND_VALUE)
         }
 
-        return getValue()!!
+        return getValue() ?: ""
     }
 
     fun deleteRequestCount() {
