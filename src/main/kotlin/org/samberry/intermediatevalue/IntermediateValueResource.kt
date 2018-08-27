@@ -24,6 +24,12 @@ class IntermediateValueResource(
     }
 
     @ResponseBody
+    @GetMapping("/synchronized-class-state")
+    fun `fetch value using synchronized class state`(): String {
+        return intermediateValueService.`fetch value using synchronized class methods`()
+    }
+
+    @ResponseBody
     @DeleteMapping("/request-count")
     fun deleteRequestCount() {
         intermediateValueService.deleteRequestCount()

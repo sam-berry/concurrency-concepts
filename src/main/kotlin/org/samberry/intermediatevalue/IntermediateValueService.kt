@@ -10,6 +10,7 @@ const val SECOND_REQUEST_VALUE = "second value"
 class IntermediateValueService {
     private var requestCount: AtomicInteger = AtomicInteger(0)
     private var classLevelValue: String? = null
+    private var syncdClassLevelValue: String? = null
 
     fun `fetch value using method state`(): String {
         val count = requestCount.get()
@@ -38,6 +39,30 @@ class IntermediateValueService {
         }
 
         return classLevelValue!!
+    }
+
+    @Synchronized
+    private fun setValue(value: String) {
+        syncdClassLevelValue = value
+    }
+
+    @Synchronized
+    private fun getValue(): String? {
+        return syncdClassLevelValue
+    }
+
+    fun `fetch value using synchronized class methods`(): String {
+        val count = requestCount.get()
+        if (count == 0) {
+            requestCount.incrementAndGet()
+            setValue(FIRST_REQUEST_VALUE)
+            Thread.sleep(5000)
+        } else {
+            requestCount.incrementAndGet()
+            setValue(SECOND_REQUEST_VALUE)
+        }
+
+        return getValue()!!
     }
 
     fun deleteRequestCount() {

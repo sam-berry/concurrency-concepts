@@ -82,4 +82,25 @@ class IntermediateValueResourceTest {
 
         assertThat(results).containsExactlyInAnyOrder(FIRST_REQUEST_VALUE, SECOND_REQUEST_VALUE)
     }
+
+    @Test
+    fun `does not return an intermediate value for concurrent requests using synchronized class state`() {
+        val results = executorService.invokeAll(listOf(
+            Callable {
+                testRestTemplate.getForEntity(
+                    url("/synchronized-class-state"),
+                    String::class.java
+                ).body!!
+            },
+            Callable {
+                Thread.sleep(1000) // make sure this request sends second
+                testRestTemplate.getForEntity(
+                    url("/synchronized-class-state"),
+                    String::class.java
+                ).body!!
+            }
+        )).map { it.get() }
+
+        assertThat(results).containsExactlyInAnyOrder(FIRST_REQUEST_VALUE, SECOND_REQUEST_VALUE)
+    }
 }
