@@ -1,8 +1,15 @@
-package org.samberry.recentorder
+package org.samberry
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
+import org.samberry.recentorder.EMPTY_STATISTICS
+import org.samberry.recentorder.ORDER_DURATION_SECONDS
+import org.samberry.recentorder.Order
+import org.samberry.recentorder.OrderAmount
+import org.samberry.recentorder.OrderStatistics
+import org.samberry.recentorder.OrderTimeline
+import org.samberry.recentorder.OrderTimestamp
 import java.math.BigDecimal
 import java.time.ZonedDateTime
 

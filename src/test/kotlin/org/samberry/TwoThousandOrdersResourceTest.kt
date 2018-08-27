@@ -1,10 +1,14 @@
-package org.samberry.recentorder
+package org.samberry
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.samberry.recentorder.Order
+import org.samberry.recentorder.OrderAmount
+import org.samberry.recentorder.OrderStatistics
+import org.samberry.recentorder.OrderTimestamp
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate

@@ -1,7 +1,8 @@
-package org.samberry.recentorder
+package org.samberry
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
+import org.samberry.recentorder.OrderAmount
 
 class OrderAmountTest {
     @Test

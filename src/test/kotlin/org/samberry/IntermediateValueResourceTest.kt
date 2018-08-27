@@ -1,4 +1,4 @@
-package org.samberry.recentorder
+package org.samberry
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.After

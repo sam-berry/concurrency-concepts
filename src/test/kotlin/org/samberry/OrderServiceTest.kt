@@ -1,9 +1,14 @@
-package org.samberry.recentorder
+package org.samberry
 
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
+import org.samberry.recentorder.Order
+import org.samberry.recentorder.OrderAmount
+import org.samberry.recentorder.OrderService
+import org.samberry.recentorder.OrderTimeline
+import org.samberry.recentorder.OrderTimestamp
 
 class OrderServiceTest {
     private lateinit var orderService: OrderService
