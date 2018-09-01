@@ -1,6 +1,3 @@
-.idea
-*.iml
-target
 /_build/
 /cover/
 /deps/
@@ -9,3 +6,4 @@ target
 erl_crash.dump
 *.ez
 http_api_tester-*.tar
+
