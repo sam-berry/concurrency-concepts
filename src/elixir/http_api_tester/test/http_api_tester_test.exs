@@ -2,15 +2,9 @@ defmodule HttpApiTesterTest do
   use ExUnit.Case
   doctest HttpApiTester
 
-  defp postOrder() do
-    HTTPoison.post "http://localhost:8081/api/orders", "{\"timestamp\": \"2018-08-23T07:30:03.000Z\", \"amount\": \"100.00\"}", [{"Content-Type", "application/json"}]
-  end
+  test "sends requests at the API" do
+    # todo call API tester to load orders
 
-  test "sends a lot of requests at the API" do
-    postOrder()
-    postOrder()
-    postOrder()
-    postOrder()
     {:ok, response} = HTTPoison.get("http://localhost:8081/api/statistics", [], [])
 
     IO.puts response.body
