@@ -14,11 +14,25 @@ defmodule HttpApiTester do
 
   defp buildNumberOfRequests(totalNumber, requests \\ [], currentNumber \\ 0) do
     cond do
-      totalNumber === currentNumber ->
-        requests
-      true ->
-        buildNumberOfRequests(totalNumber, [requests], currentNumber + 1)
+      totalNumber === currentNumber -> requests
+      true -> buildNumberOfRequests(totalNumber, [requests], currentNumber + 1)
     end
+  end
+
+  defp repeatList(currentList, desiredLength) do
+    cond do
+      length(currentList) == desiredLength -> currentList
+      true -> repeatList([Enum.at(currentList, 0) | currentList])
+    end
+  end
+
+  def distributeRequestsAcrossClients(numberOfRequests, numberOfClients) do
+    [roundedResultString | _] = String.split(Float.to_string(numberOfRequests / numberOfClients), ".")
+    roundedResult = Integer.parse(roundedResultString)
+
+    remainder = numberOfRequests - (roundedResult * numberOfClients)
+
+    clientRequests = HttpApiTester.distributeRequestsAcrossClients(numberOfRequests, numberOfClients)
   end
 
   defp run(numberOfRequests, numberOfClients) do
@@ -28,5 +42,6 @@ defmodule HttpApiTester do
     # instantiate m clients which iterate through their set of requests
     # collect total
     # expect total to equal stats sum
+
   end
 end

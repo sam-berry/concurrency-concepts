@@ -1,3 +1,3 @@
 defmodule Request do
-  defstruct url, body
+  defstruct url: nil, body: nil
 end
